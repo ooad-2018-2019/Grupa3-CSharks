@@ -101,3 +101,6 @@
   prijavljuju se na oglase da bi dobili radno mjesto, ili bivaju pozvani od strane nekog poslodavca bez prethodne prijave.
   
 - Neregistrovani korisnici: lica koja su u mogućnosti pregledati oglase i kandidate, ali sa restriktivnim pristupom. 
+
+- Administrator: održava sistem što uključuje ažuriranje baze, praćenje procesa i brisanje profila ili oglasa nastalih usljed određenih
+  neregularnosti.
