@@ -1,0 +1,14 @@
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\bin\Release\netcoreapp2.1\SeekAndFindWebServis.deps.json
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\bin\Release\netcoreapp2.1\SeekAndFindWebServis.runtimeconfig.json
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\bin\Release\netcoreapp2.1\SeekAndFindWebServis.runtimeconfig.dev.json
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\bin\Release\netcoreapp2.1\SeekAndFindWebServis.dll
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\bin\Release\netcoreapp2.1\SeekAndFindWebServis.pdb
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.csprojAssemblyReference.cache
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.csproj.CoreCompileInputs.cache
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.RazorAssemblyInfo.cache
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.RazorAssemblyInfo.cs
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.AssemblyInfoInputs.cache
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.AssemblyInfo.cs
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.RazorTargetAssemblyInfo.cache
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.dll
+C:\Users\Notebook\source\repos\SeekAndFindWebServis\SeekAndFindWebServis\obj\Release\netcoreapp2.1\SeekAndFindWebServis.pdb
