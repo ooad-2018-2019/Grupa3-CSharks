@@ -1,0 +1,64 @@
+﻿@model SeekAndFind.Models.Aplikant
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Deaktivacija profila</h2>
+
+<h3>Jeste li sigurni da želite deaktivirati profil?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Prezime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumRodjenja)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatumRodjenja)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Grad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Grad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sifra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sifra)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="KorisnikId" />
+        <input type="submit" value="Deaktiviraj" class="btn btn-default" /> 
+    </form>
+    <div>
+        <li>@Html.ActionLink("Nazad na profil", "Details", "Aplikant", new { id = @Model.KorisnikId })</li>
+    </div>
+</div>

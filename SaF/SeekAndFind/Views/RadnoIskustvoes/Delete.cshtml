@@ -1,0 +1,45 @@
+﻿@model SeekAndFind.Models.RadnoIskustvo
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>RadnoIskustvo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kompanija)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kompanija)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumPocetka)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatumPocetka)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumKraja)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatumKraja)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Zanimanje)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Zanimanje.ZanimanjeId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="RadnoIskustvoId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

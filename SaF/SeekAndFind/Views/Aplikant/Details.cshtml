@@ -1,0 +1,279 @@
+﻿@model SeekAndFind.Models.ViewModels.AplikantData
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@if (Model.Korisnik != null && Model.Korisnik.KorisnikId == Model.Aplikant.KorisnikId)
+{
+    <h2>Moj profil</h2>
+
+}
+else
+{
+    <h2>Aplikant na oglas</h2>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Datum Rodjenja</th>
+            <th>Grad</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            var item = Model.Aplikant;
+            string selectedRow = "";
+            if (item.KorisnikId == (int?)ViewData["AplikantId"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prezime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatumRodjenja)
+                </td>
+                <td>
+                    @if (item.Grad != null)
+                    {
+                        @item.Grad
+                    }
+                </td>
+                @if (Model.Korisnik != null && Model.Korisnik is Aplikant)
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.KorisnikId">Uredi profil</a> |
+                        <a asp-action="Delete" asp-route-id="@item.KorisnikId">Obriši profil</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<hr />
+
+@if (Model.Korisnik != null && Model.Korisnik is Aplikant)
+{
+
+
+
+    @if (Model.Obavijesti != null)
+    {
+        <h4>Obavijesti </h4>
+
+        @foreach (Obavijest o in Model.Obavijesti)
+        {
+
+
+            <h4>
+                <li>@o.Oglas.Naziv </li>
+</h4>
+
+             @o.Oglas.Zanimanje.Naziv <a> @Html.ActionLink("Saznaj više", "Details", "Oglas", new { id = o.OglasId }) </a>
+            <hr />
+
+        }
+
+    }
+
+    <br />
+    <li>@Html.ActionLink("Dodaj srednju školu", "Create", "SrednjaSkolaAplikantas", new { id = item.KorisnikId })</li>
+    <li>@Html.ActionLink("Dodaj fakultet", "Create", "FakultetiAplikantas", new { id = item.KorisnikId })</li>
+}
+
+
+@if (Model.SrednjeSkole != null || Model.Fakulteti != null)
+{
+    <h3>
+        Obrazovanje
+    </h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vrsta ustanove</th>
+                <th>Naziv</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model.SrednjeSkole != null)
+            {
+
+            <td>
+                Srednja Škola
+            </td>
+            <td>
+
+                @foreach (var srednjaSkola in Model.SrednjeSkole)
+                {
+
+
+                    @srednjaSkola.Naziv <br />
+
+                }
+            </td>
+        }
+            @if (Model.Fakulteti != null)
+            {
+                <tr>
+                    <td>
+                        Fakultet
+                    </td>
+                    <td>
+                        @foreach (var Fakultet in Model.Fakulteti)
+                        {
+
+
+                            @Fakultet.Naziv <br />
+
+                        }
+                    </td>
+</tr>
+            }
+
+            </tbody>
+        </table>
+    }
+<br />
+<hr />
+@if (Model.Korisnik != null && Model.Korisnik is Aplikant)
+{
+
+
+    <h5>
+        <li> @Html.ActionLink("Dodaj jezik", "Create", "JeziciAplikantas", new { apl = item.KorisnikId })</li>
+    </h5>
+}
+@if (Model.Jezici != null)
+{
+    <h3>Jezici</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Redni broj</th>
+            <th>Naziv</th>
+        </tr>
+        @{int broj = 0;}
+        @foreach (var jezik in Model.Jezici)
+        {
+            selectedRow = "";
+            if (jezik.JezikId == (int?)ViewData["JezikId"])
+            {
+                selectedRow = "success";
+
+            }
+            broj++;
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Details", new { jezikId = jezik.JezikId })
+                </td>
+                <td>
+                    @broj
+                </td>
+                <td>
+                    @jezik.Naziv
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+@if (Model.JeziciAplikanta != null)
+{
+    <h3>
+        Podaci o Jeziku
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Nivo pisanja</th>
+            <th>Nivo citanja</th>
+            <th></th>
+        </tr>
+        @foreach (var jezikApl in Model.JeziciAplikanta)
+        {
+            <tr>
+                <td>
+                    @jezikApl.NivoCitanja
+                </td>
+                <td>
+                    @jezikApl.NivoPisanja
+                </td>
+                <td>
+                    @if (Model.Korisnik != null && Model.Korisnik is Aplikant)
+                    {
+                        @Html.ActionLink("| Edituj", "Edit", "JeziciAplikantas", new { id = jezikApl.JeziciAplikantaId, idApl = item.KorisnikId })
+
+                        @Html.ActionLink("| Izbrisi", "Delete", "JeziciAplikantas", new { id = jezikApl.JeziciAplikantaId })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+<h3></h3>
+
+<br />
+<hr />
+@if (Model.Korisnik != null && Model.Korisnik is Aplikant)
+{
+
+    <h5>
+        <li>@Html.ActionLink("Dodaj radno iskustvo", "Create", "RadnoIskustvoes", new { id = item.KorisnikId })</li>
+
+    </h5>
+}
+@if (Model.RadnoIskustvo != null)
+{
+    <h3>
+        Radno Iskustvo
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Kompanija</th>
+            <th>Pozicija</th>
+            <th>Datum Pocetka</th>
+            <th>Datum Kraja</th>
+            <th></th>
+        </tr>
+        @foreach (var radno in Model.RadnoIskustvo)
+        {
+            <tr>
+                <td>
+                    @radno.Kompanija
+                </td>
+                <td>
+                    @radno.Zanimanje.Naziv
+                </td>
+                <td>
+                    @radno.DatumPocetka
+                </td>
+                <td>
+                    @radno.DatumKraja
+                </td>
+
+                @if (Model.Korisnik != null && Model.Korisnik is Aplikant)
+                {
+
+                    <td>
+                        @Html.ActionLink("Edituj Radno Iskustvo", "Edit", "RadnoIskustvoes", new { id = radno.RadnoIskustvoId, idAplikanta = item.KorisnikId })
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}
+

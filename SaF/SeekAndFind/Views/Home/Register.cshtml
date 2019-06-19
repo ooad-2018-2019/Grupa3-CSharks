@@ -1,0 +1,40 @@
+﻿@model SeekAndFind.Models.Korisnik
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+    <h2>Register</h2>
+
+<div >
+    <div class="col-md-4">
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Email" name="email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input  type="password" name="sifra" class="form-control" placeholder="Sifra" />
+                <span asp-validation-for="Sifra" class="text-dange"></span>
+            </div>
+            <div class="form-group">
+                <input  type="password" name="ponovljenaSifra" class="form-control" placeholder="Ponovljena Sifra" />
+               
+            </div>
+            <input type="radio" name="korisnik" value="poslodavac" checked>Poslodavac<br>
+            <input type="radio" name="korisnik" value="aplikant">Aplikant<br>
+            <div class="form-group">
+                <input type="submit" value="Registruj se" class="btn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (ViewBag.Registracija != null)
+{
+    <h4>
+        @ViewBag.Registracija
+    </h4>
+}

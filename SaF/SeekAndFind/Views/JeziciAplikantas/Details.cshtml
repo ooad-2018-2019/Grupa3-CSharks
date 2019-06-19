@@ -1,0 +1,39 @@
+﻿@model SeekAndFind.Models.JeziciAplikanta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JeziciAplikanta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NivoCitanja)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NivoCitanja)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NivoPisanja)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NivoPisanja)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Aplikant)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Jezik)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Jezik.JezikId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.JeziciAplikantaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

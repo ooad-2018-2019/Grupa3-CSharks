@@ -1,0 +1,24 @@
+﻿@model SeekAndFind.Models.FakultetiAplikanta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FakultetiAplikanta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fakultet)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fakultet.FakultetId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.FakultetiAplikantaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

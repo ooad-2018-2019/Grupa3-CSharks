@@ -1,0 +1,120 @@
+﻿@model SeekAndFind.Models.Oglas
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+
+<h2>Brisanje oglasa</h2>
+
+<h3>Jeste li sigurni da želite obrisati oglas?</h3>
+
+<br />
+<form asp-action="Delete">
+    <input type="hidden" asp-for="OglasId" />
+    <input type="submit" value="Obriši oglas" class="btn btn-default" />
+    <br />
+    <br />
+    <br />
+
+</form>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Zanimanje)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Zanimanje.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Poslodavac.Naziv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Poslodavac.Naziv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumObjavljivanja)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatumObjavljivanja)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumIsteka)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatumIsteka)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Aktuelan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Aktuelan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Grad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Grad)
+        </dd>
+    </dl>
+    <div>
+        <table class="table">
+            <thead>
+                <tr style="padding : 5px; text-align:center">
+                    <th>Jezici</th>
+                    <th>Fakultet</th>
+                    <th>Srednja skola</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @{
+                            foreach (var jezik in Model.JeziciOglasa)
+                            {
+                                @jezik.Jezik.Naziv @: | Nivo Citanja @jezik.NivoCitanja, Nivo pisanja @jezik.NivoPisanja <br />
+                            }
+                        }
+                    </td>
+
+                    <td>
+                        @{
+                            foreach (var fakultet in Model.FakultetiOglasa)
+                            {
+                                @fakultet.Fakultet.Naziv <br />
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            foreach (var srednjaSkola in Model.SrednjaSkolaOglasa)
+                            {
+                                @srednjaSkola.SrednjaSkola.Naziv <br />
+                            }
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <br />
+    <br />
+    <li><a asp-action="Index">Nazad na listu oglasa</a></li>
+</div>

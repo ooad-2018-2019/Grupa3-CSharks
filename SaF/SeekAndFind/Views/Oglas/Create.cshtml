@@ -1,0 +1,167 @@
+﻿@model SeekAndFind.Models.Oglas
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Oglas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4" >
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Zanimanje" class="control-label"></label>
+                <select asp-for="ZanimanjeId" class="form-control" asp-items="ViewBag.ZanimanjeId">
+                    <option value="">-- Odaberite zanimanje --</option>
+                </select>
+                <span asp-validation-for="ZanimanjeId" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Naziv" class="control-label"></label>
+                <input asp-for="Naziv" class="form-control" />
+                <span asp-validation-for="Naziv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Opis" class="control-label"></label>
+                <input asp-for="Opis" class="form-control" />
+                <span asp-validation-for="Opis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumIsteka" class="control-label"></label>
+                <input asp-for="DatumIsteka" class="form-control" />
+                <span asp-validation-for="DatumIsteka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grad" class="control-label"></label>
+                <input asp-for="Grad" class="form-control" />
+                <span asp-validation-for="Grad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="padding : 5px; text-align:center">Jezici</th>
+                                <th style="padding : 5px; text-align:center">Nivo citanja</th>
+                                <th style="padding : 5px; text-align:center">Nivo pisanja</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            @{
+                                List<SeekAndFind.Models.ViewModels.DodijeljeniJeziciOglasu> jezici = ViewBag.Jezici;
+
+                                for (int i = 0; i < jezici.Count; i++)
+                                {
+                                    SeekAndFind.Models.ViewModels.DodijeljeniJeziciOglasu jezik = jezici[i];
+                                @:</tr><tr>
+
+
+
+
+
+
+
+
+                                    <td style="padding : 5px; text-align:center">
+                                        <input type="checkbox"
+                                               name="selectedJezici"
+                                               value="@jezik.JezikId"
+                                               @(Html.Raw(jezik.Assigned ? "checked=\"checked\"" : "")) />
+                                        @jezik.Naziv
+
+                                    </td>
+                                    <td style="padding : 5px;text-align:center">
+                                        <input type="number"
+                                               name="nivoiCitanja"
+                                               value="@jezik.NivoCitanja" />
+                                    </td>
+                                    <td style="padding : 5px; text-align:center">
+                                        <input type="number"
+                                               name="nivoiPisanja"
+                                               value="@jezik.NivoPisanja" />
+                                    </td>
+                                }
+                            @:</tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group" >
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="padding : 5px; text-align:center">Srednje skole</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                @{
+                                    List<SeekAndFind.Models.ViewModels.DodijeljeneSkoleOglasu> skole = ViewBag.SrednjeSkole;
+
+                                    for (int i = 0; i < skole.Count; i++)
+                                    {
+                                        SeekAndFind.Models.ViewModels.DodijeljeneSkoleOglasu skola = skole[i];
+                                    @:</tr><tr>
+                                        <td style="padding : 5px">
+                                            <input type="checkbox"
+                                                   name="selectedSkole"
+                                                   value="@skola.SrednjaSkolaId"
+                                                   @(Html.Raw(skola.Assigned ? "checked=\"checked\"" : "")) />
+                                            @skola.Naziv
+
+                                        </td>
+
+                                    }
+                                @:</tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="padding : 5px; text-align:center">Fakulteti</th>
+                                    </tr>
+                                </thead>
+
+                                <tr>
+                                    @{
+                                        List<SeekAndFind.Models.ViewModels.DodjieljeniFakultetiOglasu> fakulteti = ViewBag.Fakulteti;
+
+                                        for (int i = 0; i < fakulteti.Count; i++)
+                                        {
+                                            SeekAndFind.Models.ViewModels.DodjieljeniFakultetiOglasu fakultet = fakulteti[i];
+                                        @:</tr><tr>
+                                            <td style="padding : 5px">
+                                                <input type="checkbox"
+                                                       name="selectedFakulteti"
+                                                       value="@fakultet.FakultetId"
+                                                       @(Html.Raw(fakultet.Assigned ? "checked=\"checked\"" : "")) />
+                                                @fakultet.Naziv
+
+                                            </td>
+
+                                        }
+                                    @:</tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+

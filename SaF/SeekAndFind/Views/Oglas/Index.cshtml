@@ -1,0 +1,187 @@
+﻿@model SeekAndFind.Models.ViewModels.OglasData
+
+@{
+    ViewData["Title"] = "Oglasi";
+}
+
+<section>
+    @if (SeekAndFind.Controllers.HomeController.prijavljenaOsoba is Poslodavac)
+    {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <div style="float : left; width: 30%; border: 1px solid black ; padding : 10px">
+            <h2>Vasi oglasi</h2>
+        </div>
+    }
+    else
+    {
+        <h2>Svi oglasi</h2>
+        <div style="float : left; width: 30%; border: 1px solid black ; padding : 10px">
+            <div class="form-group">
+                <select class="form-control" name="zanimanje" asp-items="ViewBag.ZanimanjeId">
+                    <option value="">-- Odaberite zanimanje --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="col-offset-2 col-3">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="padding : 5px; text-align:center">Jezici</th>
+                                <th style="padding : 5px; text-align:center">Nivo citanja</th>
+                                <th style="padding : 5px; text-align:center">Nivo pisanja</th>
+                            </tr>
+                        </thead>
+
+                        @{
+                            List<SeekAndFind.Models.ViewModels.DodijeljeniJeziciOglasu> jezici = ViewBag.Jezici;
+
+                            for (int i = 0; i < jezici.Count; i++)
+                            {
+                                SeekAndFind.Models.ViewModels.DodijeljeniJeziciOglasu jezik = jezici[i];
+                                @:<tr>
+                                    <td style="padding : 5px; text-align:center">
+                                        <input type="checkbox"
+                                               name="selectedJezici"
+                                               value="@jezik.JezikId"
+                                               @(Html.Raw(jezik.Assigned ? "checked=\"checked\"" : "")) />
+                                        @jezik.Naziv
+
+                                    </td>
+                                    <td style="padding : 5px;text-align:center">
+                                        <input type="number" style="width : 100px"
+                                               name="nivoiCitanja"
+                                               value="@jezik.NivoCitanja" />
+                                    </td>
+                                    <td style="padding : 5px; text-align:center">
+                                        <input type="number" style="width : 100px"
+                                               name="nivoiPisanja"
+                                               value="@jezik.NivoPisanja" />
+                                    </td>
+                                }
+                            @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="padding : 5px; text-align:center">Srednje skole</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            @{
+                                List<SeekAndFind.Models.ViewModels.DodijeljeneSkoleOglasu> skole = ViewBag.SrednjeSkole;
+
+                                for (int i = 0; i < skole.Count; i++)
+                                {
+                                    SeekAndFind.Models.ViewModels.DodijeljeneSkoleOglasu skola = skole[i];
+                                @:</tr><tr>
+                                    <td style="padding : 5px">
+                                        <input type="checkbox"
+                                               name="selectedSkole"
+                                               value="@skola.SrednjaSkolaId"
+                                               @(Html.Raw(skola.Assigned ? "checked=\"checked\"" : "")) />
+                                        @skola.Naziv
+
+                                    </td>
+
+                                }
+                            @:</tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="padding : 5px; text-align:center">Fakulteti</th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                @{
+                                    List<SeekAndFind.Models.ViewModels.DodjieljeniFakultetiOglasu> fakulteti = ViewBag.Fakulteti;
+
+                                    for (int i = 0; i < fakulteti.Count; i++)
+                                    {
+                                        SeekAndFind.Models.ViewModels.DodjieljeniFakultetiOglasu fakultet = fakulteti[i];
+                                    @:</tr><tr>
+                                        <td style="padding : 5px">
+                                            <input type="checkbox"
+                                                   name="selectedFakulteti"
+                                                   value="@fakultet.FakultetId"
+                                                   @(Html.Raw(fakultet.Assigned ? "checked=\"checked\"" : "")) />
+                                            @fakultet.Naziv
+
+                                        </td>
+
+                                    }
+                                @:</tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                    <div><a asp-area="" asp-controller="Oglas" asp-action="Pretrazi">Pretrazi</a></div>
+                </div>
+            }
+    <div style="margin-left: 35%;">
+
+        <table class="table">
+            <thead>
+                <tr style="padding : 5px; text-align:center">
+                    <th>Naziv oglasa</th>
+                    <th>Zanimanje</th>
+                    <th>Datum isteka</th>
+                    <th>Grad</th>
+                </tr>
+            </thead>          
+            <tbody>
+                @foreach (var item in Model.Oglasi)
+                {
+                    string selectedRow = "";
+                    if (item.OglasId == (int?)ViewData["OglasId"])
+                    {
+                        selectedRow = "success";
+                    }
+                    <tr class="@selectedRow">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Naziv)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Zanimanje.Naziv)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatumIsteka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grad)
+                        </td>
+
+                        <td>
+                            @if (SeekAndFind.Controllers.HomeController.prijavljenaOsoba != null)
+                            {
+                                <a asp-action="Details" asp-route-id="@item.OglasId">Detalji oglasa</a>
+                            }
+                            @if (SeekAndFind.Controllers.HomeController.prijavljenaOsoba is Poslodavac)
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.OglasId"> | Uredi oglas |</a>
+                                <a asp-action="Delete" asp-route-id="@item.OglasId">Obriši oglas</a>
+                            }
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+</section>

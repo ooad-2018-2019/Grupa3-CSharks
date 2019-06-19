@@ -1,0 +1,72 @@
+﻿@model SeekAndFind.Models.Poslodavac
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@if (SeekAndFind.Controllers.HomeController.prijavljenaOsoba is Poslodavac &&
+SeekAndFind.Controllers.HomeController.prijavljenaOsoba.KorisnikId == @Model.KorisnikId)
+{
+    <h2>Profil</h2>
+
+
+}
+else
+{
+    <h2>Podaci o poslodavcu</h2>
+}
+
+<div>
+    <h4>Poslodavac</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OPoslodavcu)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OPoslodavcu)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalji)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Detalji)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Grad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Grad)
+        </dd>
+    </dl>
+</div>
+@if (SeekAndFind.Controllers.HomeController.prijavljenaOsoba is Poslodavac &&
+SeekAndFind.Controllers.HomeController.prijavljenaOsoba.KorisnikId == @Model.KorisnikId)
+{
+    <div>
+        <li> <a asp-action="Edit" asp-route-id="@Model.KorisnikId">Uredi profil</a> </li> 
+    </div>
+    <td>
+        <li><a asp-action="Delete" asp-route-id="@Model.KorisnikId">Obriši profil</a></li>
+    </td>
+
+}
+

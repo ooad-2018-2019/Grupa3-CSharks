@@ -1,0 +1,42 @@
+﻿@model SeekAndFind.Models.RadnoIskustvo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RadnoIskustvo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kompanija)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kompanija)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumPocetka)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatumPocetka)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumKraja)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatumKraja)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Zanimanje)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Zanimanje.ZanimanjeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.RadnoIskustvoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
